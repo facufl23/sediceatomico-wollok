@@ -1,0 +1,28 @@
+import sediceatomico.*
+
+describe "Tests" {
+
+	test "burns con 10 varillas produce 1 Mkwh en springfield." {
+		assert.equals(1,centralAtomica.produccionEnergetica(springfield))
+	}
+	test "exBosque con una capacidad de 20 toneladas produce 18.5 Mkwh en springfield." {
+		assert.equals(18.5,centralCarbon.produccionEnergetica(springfield))
+	}
+	test "elSuspiro produce 2 Mkwh en springfield." {
+		assert.equals(2,centralEolica.produccionEnergetica(springfield))
+	}
+	test "Teniendo las centrales anteriores, las centrales contaminantes de sprinfield es una colección que adentro tiene sólo a exBosque." {
+		assert.equals([centralCarbon],springfield.centralesContaminantes())
+	}
+	test "Teniendo las centrales anteriores, springfield cubrió su necesidad energética si ésta era de 20 Mkwh." {
+		assert.that(springfield.cubrioNecesidades())
+	}
+	test "Teniendo las centrales anteriores, springfield está al horno si posee una necesidad energética de 30 Mkwh." {
+		springfield.necesidadEnergetica(30)
+		assert.that(springfield.estaAlHorno())
+	}
+	test "Teniendo las centrales anteriores de springfield, las centrales más productoras de la región donde ésta se encuentra es una colección con exBosque de springfield y la central hidroeléctrica de albuquerque." {
+		assert.equals([centralCarbon, centralHidroelectrica],region.centralesMasProductivas())
+	}
+	
+}
